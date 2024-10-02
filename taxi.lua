@@ -1,6 +1,6 @@
 addon.name = 'Taxi';
 addon.author = 'Notagain';
-addon.version = '1.0';
+addon.version = '1.1';
 addon.desc = 'Teleport taxi helper';
 addon.link = 'https://google.com';
 
@@ -75,6 +75,8 @@ ashita.events.register('text_in', 'text_in_cb', function(e)
 
       if message:lower():match("teleport") then
         TAXI.state.hailing[#TAXI.state.hailing + 1] = { who, message };
+        ashita.misc.play_sound(addon.path:append('\\hail.wav'));
+
 
         (function(a) table.remove(TAXI.state.hailing, 1) end):once(10);
       end
